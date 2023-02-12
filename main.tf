@@ -1,75 +1,42 @@
 
-module "multiple-vm" {
-
-  source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/instances"
-  
-  
-  
-  //project = var.project_id
+# Create privatenet network
+resource "google_compute_network" "privatenet" {
+  name                    = "privatenet"
+  auto_create_subnetworks = false
 }
 
-/*
-module "tf-attached-disk-with-vm" {
-
- source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/attached-disk-with-vm"  
-
-}
-*/
-/*
-module "tf-internal-lb" {
-
- source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/internal-lb"    
- region       = var.region
-  name         = "group2-ilb"
-  ports        = ["80"]
-  health_check = var.health_check
-  source_tags  = ["allow-group1"]
-  target_tags  = ["allow-group2", "allow-group3"]
-  backends     = [
-    { group = module.mig2.instance_group, description = "", failover = false },
-    { group = module.mig3.instance_group, description = "", failover = false },
-  ]
-  
+# Create privatesubnet-us subnetwork
+resource "google_compute_subnetwork" "privatesubnet-us" {
+  name          = "privatesubnet-us"
+  region        = "us-central1"
+  network       = google_compute_network.privatenet.self_link
+  ip_cidr_range = "172.16.0.0/24"
 }
 
-
-module "load_balancer" {
-  source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/tcp-lb"
-
-  //version      = "~> 2.0.0"
-  region       = var.region
-  name         = "load-balancer"
-  service_port = 80
-  target_tags  = ["allow-lb-service"]
-  network      = var.network
+# Create privatesubnet-eu subnetwork
+resource "google_compute_subnetwork" "privatesubnet-eu" {
+  name          = "privatesubnet-eu"
+  region        = "europe-west1"
+  network       = google_compute_network.privatenet.self_link
+  ip_cidr_range = "172.20.0.0/24"
 }
 
-module "instance_template" {
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "e2-micro"
 
-  source          = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/template"
-  service_account = var.service_account
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  network_interface {
+    # A default network is created for all GCP projects
+    //network = "default"
+    //network = google_compute_network.vpc_network.self_link
+    subnetwork = google_compute_network.privatenet.self_link
+    access_config {
+    }
+  }
 }
-
-
-
-module "managed_instance_group" {
-  source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/mig"
-
-  //version           = "~> 1.0.0"
-  region            = var.region
-  target_size       = 2
-  hostname          = "mig-simple"
-  instance_template = "teststtststststtsts"
-  
-
-  //target_pools = [module.load_balancer.target_pool]
-
-  named_ports = [{
-    name = "http"
-    port = 80
-  }]
-}
-
-
-
- */
