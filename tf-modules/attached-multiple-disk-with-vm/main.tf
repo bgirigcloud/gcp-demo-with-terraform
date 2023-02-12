@@ -33,5 +33,4 @@ resource "google_compute_disk" "attached_disk" {
   labels = {
     environment = "dev"
   }
-  
 }
