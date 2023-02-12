@@ -1,5 +1,5 @@
 
-project_id = "wise-ally-348408"
+project_id = "core-photon-372612"
 
 
 network           = "custom-vpc-tf"
