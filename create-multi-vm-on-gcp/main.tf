@@ -1,7 +1,7 @@
 
 module "multiple-vm" {
 
-  source = "C:/Users/Bisuchinu/hello-world/multi-vm-creation/instances"
+  source = "../vm-instance"
   
   
   
