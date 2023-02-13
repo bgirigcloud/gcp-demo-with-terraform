@@ -11,11 +11,12 @@
   default     = ""
 } 
 variable "region" {
+  
 
 } 
 
  variable "instance_subnetwork" {
-  description = "Name of the buckets to create."
+  description = "Name of the subnet to create."
   type        = string
   default     = ""
 } 
@@ -27,6 +28,9 @@ variable "region" {
 
 
 variable "network" {
+  description = "Name of the network to create."
+  type        = string
+  default     = ""
 
 }
 /* variable "instance_template" {
