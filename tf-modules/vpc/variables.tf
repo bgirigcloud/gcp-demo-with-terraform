@@ -1,29 +1,29 @@
-/*variable "project_id" {
+ variable "project_id" {
   description = "The ID of the project in which to provision resources."
   type        = string
   //default = "value"
 
 }
-*/
- /* variable "name" {
+
+ variable "name" {
   description = "Name of the buckets to create."
   type        = string
-  default     = "uklabs14052022"
-} */
+  default     = ""
+} 
 variable "region" {
 
 } 
 
-/* variable "instance_subnetwork" {
+ variable "instance_subnetwork" {
   description = "Name of the buckets to create."
   type        = string
   default     = ""
-} */
-*/
+} 
 
 
 
-/**
+
+
 variable "health_check" {
 
 
@@ -40,4 +40,3 @@ variable "instance_template" {
 variable "service_account" {
   default = "tcpl"
 }
-*/
