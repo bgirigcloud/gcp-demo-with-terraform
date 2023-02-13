@@ -8,7 +8,7 @@ resource "google_compute_network" "privatenet" {
 # Create privatesubnet-us subnetwork
 resource "google_compute_subnetwork" "privatesubnet-us" {
   name          = "privatesubnet-us"
-  region        = "us-central1"
+  region        = var.region
   network       = google_compute_network.privatenet.self_link
   ip_cidr_range = "172.16.0.0/24"
 }
@@ -16,7 +16,7 @@ resource "google_compute_subnetwork" "privatesubnet-us" {
 # Create privatesubnet-eu subnetwork
 resource "google_compute_subnetwork" "privatesubnet-eu" {
   name          = "privatesubnet-eu"
-  region        = "europe-west1"
+  region        = var.region
   network       = google_compute_network.privatenet.self_link
   ip_cidr_range = "172.20.0.0/24"
 }

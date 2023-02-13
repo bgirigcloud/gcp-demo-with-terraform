@@ -10,6 +10,9 @@ variable "name" {
   type        = string
   default     = "uklabs14052022"
 }
+variable "region" {
+
+}
 /*
 variable "instance_subnetwork" {
   description = "Name of the buckets to create."
@@ -17,11 +20,10 @@ variable "instance_subnetwork" {
   default     = ""
 }
 */
+
+
+
 /**
-variable "region" {
-
-}
-
 variable "health_check" {
 
 
