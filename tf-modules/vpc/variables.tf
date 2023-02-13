@@ -5,14 +5,14 @@
 
 }
 */
-variable "name" {
+/* variable "name" {
   description = "Name of the buckets to create."
   type        = string
   default     = "uklabs14052022"
 }
 variable "region" {
 
-}
+} */
 /*
 variable "instance_subnetwork" {
   description = "Name of the buckets to create."
