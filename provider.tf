@@ -1,7 +1,7 @@
 provider "google" {
-  project = "core-photon-372612"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 
 terraform {

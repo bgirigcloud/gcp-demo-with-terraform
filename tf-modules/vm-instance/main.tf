@@ -1,7 +1,6 @@
 locals {
   hostname      = var.hostname == "" ? "default" : var.hostname
   num_instances = length(var.static_ips) == 0 ? var.num_instances : length(var.static_ips)
-
 }
 
 resource "google_service_account" "default" {
@@ -16,7 +15,6 @@ resource "google_compute_instance" "default" {
   name         = "terraform-dev-application-server-${count.index+1}" 
   machine_type = "n1-standard-1"
   zone         = "us-central1-a"
-
   tags = ["foo", "bar"]
 
   boot_disk {
