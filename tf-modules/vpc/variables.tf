@@ -1,4 +1,4 @@
- variable "project_id" {
+ /* variable "project_id" {
 
 } 
 
@@ -26,4 +26,4 @@ variable "service_account" {
 variable "health_check" {
   
 }
-
+ */
