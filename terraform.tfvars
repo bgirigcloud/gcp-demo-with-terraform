@@ -6,4 +6,4 @@ zone              = "us-central1-a"
 //health_check      = "lb_health_check"
 //instance_template = "ist_instance_template"
 //service_account   = "testsraccountsformigwise-ally-348408"
-target_pools = "test_public_target-pool" */
+//target_pools = "test_public_target-pool" 
