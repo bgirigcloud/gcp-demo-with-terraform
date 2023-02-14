@@ -6,5 +6,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
+    //bucket  = "core-photon-372612"
+    //prefix  = "terraform/state"
   }
 }

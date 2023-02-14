@@ -3,7 +3,7 @@ module "VPC" {
   region = var.region
 }
 module "vm-instance" {
-  source = "./tf-modules/vm-instance"
+  source = "./tf-modules/create-mutiple-vm-instance"
   region = var.region
   project_id = var.project_id
   

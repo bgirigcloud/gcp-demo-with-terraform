@@ -26,4 +26,3 @@ jobs:
           -out=PLAN 
       - name: Terraform apply
         run: terraform apply PLAN
-        

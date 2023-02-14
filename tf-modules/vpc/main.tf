@@ -1,42 +1,30 @@
 
-# Create privatenet network
-resource "google_compute_network" "privatenet" {
-  name                    = "privatenet"
-  auto_create_subnetworks = false
+
+ # Create managementnet network
+ resource "google_compute_network" "managementnet" {
+   name                    = "managementnet"
+   auto_create_subnetworks = false
+ }
+ # Create managementsubnet-us subnetwork
+resource "google_compute_subnetwork" "managementsubnet-us" {
+  name          = "managementsubnet-us"
+  region        = "us-central1"
+  network       = google_compute_network.managementnet.self_link
+  ip_cidr_range = "10.130.0.0/20"
 }
-
-# Create privatesubnet-us subnetwork
-resource "google_compute_subnetwork" "privatesubnet-us" {
-  name          = "privatesubnet-us"
-  region        = var.region
-  network       = google_compute_network.privatenet.self_link
-  ip_cidr_range = "172.16.0.0/24"
-}
-
-# Create privatesubnet-eu subnetwork
-resource "google_compute_subnetwork" "privatesubnet-eu" {
-  name          = "privatesubnet-eu"
-  region        = var.region
-  network       = google_compute_network.privatenet.self_link
-  ip_cidr_range = "172.20.0.0/24"
-}
-
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "e2-micro"
-
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
+# Add a firewall rule to allow HTTP, SSH, RDP and ICMP traffic on managementnet
+resource google_compute_firewall "managementnet-allow-http-ssh-rdp-icmp" {
+name = allow-http-ssh-rdp-icmp
+  source_ranges = [
+    "0.0.0.0/0"
+  ]
+#RESOURCE properties go here
+network = google_compute_network.managementnet.self_link
+allow {
+    protocol = "tcp"
+    ports    = ["22", "80", "3389"]
   }
-
-  network_interface {
-    # A default network is created for all GCP projects
-    //network = "default"
-    //network = google_compute_network.vpc_network.self_link
-    subnetwork = google_compute_network.privatenet.self_link
-    access_config {
-    }
+allow {
+    protocol = "icmp"
   }
 }
