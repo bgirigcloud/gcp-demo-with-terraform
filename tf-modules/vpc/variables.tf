@@ -1,10 +1,8 @@
  /* variable "project_id" {
 
 } 
+*/
 
- variable "name" {
-
-} 
 variable "region" { 
 
 } 
@@ -26,4 +24,4 @@ variable "service_account" {
 variable "health_check" {
   
 }
- */
+ 
