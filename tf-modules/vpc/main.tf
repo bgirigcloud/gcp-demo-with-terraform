@@ -14,7 +14,7 @@ resource "google_compute_subnetwork" "managementsubnet-us" {
 }
 # Add a firewall rule to allow HTTP, SSH, RDP and ICMP traffic on managementnet
 resource google_compute_firewall "managementnet-allow-http-ssh-rdp-icmp" {
-name = allow-http-ssh-rdp-icmp
+  name = allow-http-ssh-rdp-icmp
   source_ranges = [
     "0.0.0.0/0"
   ]
