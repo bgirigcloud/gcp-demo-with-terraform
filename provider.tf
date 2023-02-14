@@ -4,9 +4,9 @@ provider "google" {
   zone    = var.zone
 }
 
-terraform {
+ terraform {
   backend "gcs" {
-    //bucket  = "core-photon-372612"
+  
     //prefix  = "terraform/state"
   }
-}
+} 
