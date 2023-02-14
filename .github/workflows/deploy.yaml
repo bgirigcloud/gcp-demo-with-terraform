@@ -22,6 +22,7 @@ jobs:
         run: terraform init -backend-config="bucket=$TF_STATE_BUCKET_NAME" -backend-config="prefix=k8s"
       - name: Terraform Plan
         run: |
+          terraform force-unlock 1676309904301638
           terraform plan -destroy -lock=false \
           -out=PLAN 
       - name: Terraform apply
