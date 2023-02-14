@@ -1,6 +1,6 @@
 module "VPC" {
   source = "./tf-modules/vpc" 
-  region = var.region
+  //region = var.region
 }
 module "vm-instance" {
   source = "./tf-modules/create-mutiple-vm-instance"
